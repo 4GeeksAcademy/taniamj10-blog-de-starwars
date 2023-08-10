@@ -1,20 +1,53 @@
+import { ids } from "webpack";
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
+			
+				personaje:[],
+			detallepersonajes: {},
 		},
 		actions: {
+			obtenerPersonaje: () => {
+				fetch("https://www.swapi.tech/api/people/")
+
+				.then(res => res.json())
+				.then(data => setStore({personaje: data.results}))
+				.catch(err => console.error(err))
+			},
+
+			obtenerdetallepersonajes: (id) => {
+				fetch("https://www.swapi.tech/api/people/"+ id)
+
+				.then(res => res.json())
+				.then(data => setStore({detallepersonajes: data.results}))
+				.catch(err => console.error(err))
+			},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
